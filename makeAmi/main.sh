@@ -32,7 +32,7 @@ sudo usermod -a -G nginx ec2-user
 sudo mv /etc/nginx/nginx.conf /etc/nginx-backup/nginx.conf
 
 # nginx.conf 파일 내려 받기 
-sudo wget -O /etc/nginx/nginx.conf https://raw.githubusercontent.com/Jeongdaeho/aws-laravel/main/makeAmi/nginx.ini
+sudo wget -O /etc/nginx/nginx.conf https://raw.githubusercontent.com/Jeongdaeho/aws-infra/main/makeAmi/nginx.ini
 
 
 sudo service nginx start
