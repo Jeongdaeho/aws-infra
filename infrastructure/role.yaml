@@ -1,0 +1,55 @@
+Description: >
+
+Parameters:
+  EnvironmentName:
+    Description: An environment name that will be prefixed to resource names
+    Type: String
+
+  S3BucketName:
+    Description: Name of a S3 Bucket to be granted access to
+    Type: String
+
+Resources:
+  WebInstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      Path: /
+      Roles:
+        - !Ref WebRole
+
+  WebRole:
+    Type: AWS::IAM::Role
+    Properties:
+      Path: /
+      RoleName: !Sub ${EnvironmentName}-WebRole
+      AssumeRolePolicyDocument: |
+        {
+            "Statement": [{
+                "Action": "sts:AssumeRole",
+                "Effect": "Allow",
+                "Principal": {
+                    "Service": "ec2.amazonaws.com"
+                }
+            }]
+        }
+      ManagedPolicyArns:
+        # session manager role
+        - arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM
+        - arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy
+      Policies:
+        - PolicyName: ec2-s3-write-access
+          PolicyDocument:
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:PutObject
+                  - s3:GetBucketAcl
+                  - s3:PutObjectTagging
+                  - s3:ListBucket
+                  - s3:PutObjectAcl
+                Resource: !Sub arn:aws:s3:::${S3BucketName}/*
+
+Outputs:
+  WebInstanceProfile:
+    Description: A reference to WebInstanceProfile
+    Value: !Ref WebInstanceProfile
