@@ -14,6 +14,7 @@ Resources:
     Type: AWS::IAM::InstanceProfile
     Properties:
       Path: /
+      InstanceProfileName: !Sub ${EnvironmentName}-WebRole
       Roles:
         - !Ref WebRole
 

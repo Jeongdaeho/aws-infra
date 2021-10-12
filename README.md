@@ -37,5 +37,6 @@ infra 내부 파일 수정시 master 파일의 경로도 수정해준다.
 ```
 #!/bin/bash
 
+cd /home/ec2-user/www/
 git pull
 ```

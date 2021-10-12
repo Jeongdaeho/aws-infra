@@ -20,6 +20,7 @@ Resources:
     Type: AWS::EC2::SecurityGroup
     Properties:
       VpcId: !Ref VPC
+      GroupName: !Sub ${EnvironmentName}-WEB-SG
       GroupDescription: Access to the WEB hosts
       SecurityGroupIngress:
         # Only allow inbound access to ECS from the ELB
@@ -35,6 +36,7 @@ Resources:
     Type: AWS::EC2::SecurityGroup
     Properties:
       VpcId: !Ref VPC
+      GroupName: !Sub ${EnvironmentName}-LoadBalancer-SG
       GroupDescription: Access to the load balancer that sits in front of ECS
       SecurityGroupIngress:
         # Allow access from anywhere to our ECS services
@@ -47,6 +49,7 @@ Resources:
   DBSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
+      GroupName: !Sub ${EnvironmentName}-DB-SG
       GroupDescription: Open database for access
       VpcId: !Ref VPC
       SecurityGroupIngress:
