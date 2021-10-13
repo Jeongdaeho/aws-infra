@@ -39,7 +39,6 @@ Resources:
     Type: AWS::ElasticLoadBalancingV2::Listener
     Properties:
       LoadBalancerArn: !Ref LoadBalancer
-      Name: !Sub ${EnvironmentName}-http
       Port: 80
       Protocol: HTTP
       DefaultActions:
@@ -50,7 +49,6 @@ Resources:
     Type: AWS::ElasticLoadBalancingV2::Listener
     Properties:
       LoadBalancerArn: !Ref LoadBalancer
-      Name: !Sub ${EnvironmentName}-https
       Port: 443
       Protocol: HTTPS
       Certificates:
