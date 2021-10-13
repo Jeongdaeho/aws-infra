@@ -1,11 +1,6 @@
 Description: A basic CloudFormation template for an RDS Aurora cluster.
 
 Parameters:
-  DatabaseInstanceType:
-    Default: db.t3.small
-    Description: The instance type to use for the database.
-    Type: String
-
   DatabasePassword:
     AllowedPattern: "[a-zA-Z0-9]+"
     ConstraintDescription: must contain only alphanumeric characters.
@@ -13,35 +8,6 @@ Parameters:
     MaxLength: "41"
     MinLength: "8"
     NoEcho: "true"
-    Type: String
-
-  DatabaseUsername:
-    AllowedPattern: "[a-zA-Z0-9]+"
-    ConstraintDescription: must contain only alphanumeric characters.
-    Description: The database admin account user name.
-    MaxLength: "16"
-    MinLength: "1"
-    Type: String
-
-  DatabaseBackupRetentionPeriod:
-    Type: String
-    Default: 14
-    Description: The database backup retention period in days.
-
-  DatabaseSubnets:
-    Description: The subnets to place database instances in.
-    Type: CommaDelimitedList
-
-  DatabaseSecurityGroup:
-    Type: String
-    Description: Security groups to apply to the RDS cluster.
-
-  DatabaseName:
-    Type: String
-    Description: Database name
-
-  AlarmTopic:
-    Description: EMail address to notify if there are any operational issues
     Type: String
 
 Resources:

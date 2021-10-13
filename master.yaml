@@ -11,6 +11,16 @@ Description: >
   Finally, it deploys a pair of example ECS services from containers published in 
   Amazon EC2 Container Registry (Amazon ECR).
 
+Parameters:
+  DatabasePassword:
+    AllowedPattern: "[a-zA-Z0-9]+"
+    ConstraintDescription: must contain only alphanumeric characters.
+    Description: The database admin account password.
+    MaxLength: "41"
+    MinLength: "8"
+    NoEcho: "true"
+    Type: String
+
 Resources:
   VPC:
     Type: AWS::CloudFormation::Stack
@@ -51,7 +61,7 @@ Resources:
       Parameters:
         # db.t3.small, db.m6g.large, db.m6g.xlarge
         DatabaseInstanceType: ***DatabaseInstanceType
-        DatabasePassword: ***DatabasePassword
+        DatabasePassword: !Ref DatabasePassword
         DatabaseUsername: ***DatabaseUsername
         DatabaseSubnets: !GetAtt VPC.Outputs.PrivateSubnets
         DatabaseSecurityGroup: !GetAtt SecurityGroups.Outputs.DBSecurityGroup
