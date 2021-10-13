@@ -1,6 +1,6 @@
 ## 사전 준비 사항
 
-# 참조
+# 참조 문서
 
 https://github.com/awslabs/ecs-refarch-cloudformation#fork-destination-box
 
@@ -24,15 +24,21 @@ aws sns create-topic --name developers --profile [profile]
 aws sns subscribe --topic-arn [topic-arn] --protocol email --notification-endpoint [email] --profile [profile]
 ```
 
-# s3 에 master 및, 필요 파일을 업로드 한다.
+# master.yaml 파일 설정
 
-infra 내부 파일 수정시 master 파일의 경로도 수정해준다.
+1. master.yaml 파일을 ./masters/ 디렉토리로 복사및 이름 변경
+
+2. \*\*\* 표기가 있는 부분을 설정
+
+3. s3 디렉토리에 업로드 (선택사항)
+
+4. infra 내부 파일 수정시 별도 디렉토리 생성후 업로드, master 파일 내부 경로도 수정.
 
 # auto scaling 은 따로 설정해 준다.
 
 변경 사항이나 예외 사항이 많기 때문에 자동화 하지 않았다.
 
-# launch configration user data
+# auto scaling 생성시 launch configration user data
 
 ```
 #!/bin/bash
