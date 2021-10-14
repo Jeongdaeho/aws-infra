@@ -47,3 +47,10 @@ ec2-user 권한으로 cd /home/ec2-user/aws-infra/;git pull 명령어 실행
 
 su - ec2-user -c "cd /home/ec2-user/aws-infra/;git pull"
 ```
+
+## stress test
+
+```
+sudo amazon-linux-extras install epel -y
+sudo yum install stress -y
+```
